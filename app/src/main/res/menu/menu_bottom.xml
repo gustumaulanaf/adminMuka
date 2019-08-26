@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuUtamaAdmin"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Beranda"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menuBerkas"
+        android:title="Berkas"
+        android:icon="@drawable/ic_insert_drive_file_black_24dp"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menuPetugasAdmin"
+        android:title="Petugas"
+        android:icon="@drawable/ic_group_black_24dp"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menuProfileAdmin"
+        android:enabled="true"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="Profile"
+        app:showAsAction="always" />
+
+
+</menu>

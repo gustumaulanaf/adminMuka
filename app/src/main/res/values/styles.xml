@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:titleTextStyle">@style/JudulActionBar</item>
+    </style>
+    <style name="JudulActionBar" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        >
+        <item name="android:textColor">@color/putih</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

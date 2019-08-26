@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".view.LoginActivity">
+<ImageView
+    android:src="@drawable/bpnlogo"
+    android:layout_width="250dp"
+    android:layout_margin="10dp"
+    android:layout_height="250dp" />
+    <Spinner
+        android:background="@drawable/custom_searchbox"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:entries="@array/mode"
+        android:id="@+id/spMode"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Username">
+        <EditText
+            android:id="@+id/etUsername"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="300dp"
+        app:passwordToggleEnabled="true"
+        android:layout_height="wrap_content"
+        android:hint="Password">
+        <EditText
+            android:id="@+id/etPassword"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_margin="20dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/putih"
+        android:text="MASUK"
+        android:background="@drawable/custom_button"/>
+  </LinearLayout>

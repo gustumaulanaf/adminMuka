@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textColor="@color/putih"
+                android:text="Tambah Data"
+                android:background="@color/colorPrimary"
+                android:textSize="30sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="No. Berkas">
+
+                        <EditText
+                            android:id="@+id/etNoBerkas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomor Surat"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Pemohon">
+
+                        <EditText
+                            android:id="@+id/etNamaPemohon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="No Hak (No. HM/C)">
+
+                        <EditText
+                            android:id="@+id/etNoHak"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Kuasa/notaris PPAT/yang mengurusi"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="RT/RW"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="No. HM/C"/>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Desa/Kelurahan">
+
+                        <EditText
+                            android:id="@+id/etDesaKelurahan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Kecamatan">
+
+                        <EditText
+                            android:id="@+id/etKecamatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Kabupaten/Kota"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Hari">
+
+                        <EditText
+                            android:id="@+id/etHari"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:inputType="text"
+                            android:textColor="@color/birutua" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Tanggal Ukur">
+
+                            <EditText
+                                android:id="@+id/etTglUkur"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="false"
+                                android:textColor="@color/birutua" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/btTglUkur"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/colorPrimary"
+                            android:src="@drawable/ic_date_range_black_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Tanggal 302"/>
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Petugas :"
+                        android:layout_margin="10dp"
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/hitam"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:hint="Nama"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:textAllCaps="true"
+                            android:editable="false"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etNamaPetugas"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="300dp"
+                        android:hint="No. HP"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/etNoHP"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:background="@drawable/custom_button"
+                android:text="Tambah"
+                android:textColor="@color/putih" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
