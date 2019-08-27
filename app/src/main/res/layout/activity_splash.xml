@@ -8,7 +8,7 @@
     <TextView
         android:background="@color/birutua"
         android:textColor="@color/putih"
-        android:text="Admin Version"
+        android:text="Petugas Version"
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"

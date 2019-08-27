@@ -28,8 +28,6 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
     //ViewInject
-    @BindView(R.id.spMode)
-    Spinner spinner;
     @BindView(R.id.etUsername)
     EditText ETusername;
     @BindView(R.id.etPassword)
@@ -57,20 +55,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Login..");
         progressDialog.setCancelable(false);
-        spinner = findViewById(R.id.spMode);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectSpinner = spinner.getItemAtPosition(i).toString();
-                SharedPrefUtil.saveString("modeSpinner", selectSpinner);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(LoginActivity.this, "Login sebagai tidak boleh Kosong", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
     @OnClick(R.id.btLogin)
     public void login(){
@@ -81,13 +65,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             Toast.makeText(LoginActivity.this, "Form Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
         } else {
             progressDialog.show();
-
-            if (SharedPrefUtil.getString("modeSpinner").equals("Admin")) {
-                loginPresenter.gotoLogin(username, password);
-            } else if (SharedPrefUtil.getString("modeSpinner").equals("Petugas")) {
-
                 loginPresenter.gotoLoginPetugas(username, password);
-            }
         }
     }
     private void initPresenter() {

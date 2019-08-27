@@ -68,19 +68,22 @@ public class BerkasPresenter {
     }
 
     public void addBerkas(String sNoberkas, String sNamaPemohon, String snoHak, String sDesa, String sKecamatan, String sHari, String sTanggal, String sPetugas, String sNoHp) {
-            baseUrl.getApi().addBerkas(sNoberkas,sNamaPemohon,snoHak,sDesa,sKecamatan,sHari,sTanggal,sPetugas,sNoHp).enqueue(new Callback<List<Berkas>>() {
-                @Override
-                public void onResponse(Call<List<Berkas>> call, Response<List<Berkas>> response) {
-                    if (response.isSuccessful()){
-                        berkasList = response.body();
-                        berkasView._onBerkasAdd();
-                    }
-                }
+        Log.d("HASIL", "onResponse: "+"sukses");
+        baseUrl.getApi().addBerkas(sNoberkas,sNamaPemohon,snoHak,sDesa,sKecamatan,sHari,sTanggal,sPetugas,sNoHp).enqueue(new Callback<Berkas>() {
+            @Override
+            public void onResponse(Call<Berkas> call, Response<Berkas> response) {
+                if (response.isSuccessful()){
 
-                @Override
-                public void onFailure(Call<List<Berkas>> call, Throwable t) {
-                        berkasView._onBerkasFailedAdd();
+                    berkasView._onBerkasAdd();
+                    //Log.d("HASIL", "onResponse: "+response.code());
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<Berkas> call, Throwable t) {
+                berkasView._onBerkasFailedAdd();
+            }
+        });
+    //    Log.d("BerkasADD", "onResponse: "+"Success");
     }
 }

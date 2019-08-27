@@ -46,7 +46,7 @@ import java.util.Locale;
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
         Locale locale = new Locale("in", "ID");
-        String selectedDate = new SimpleDateFormat("dd/MM/yyyy", locale).format(c.getTime());
+        String selectedDate = new SimpleDateFormat("yyyy-MM-dd", locale).format(c.getTime());
         String selectHari = new SimpleDateFormat("EEEE", locale).format(c.getTime());
         Intent intent = new Intent();
         intent.putExtra("hari",selectHari);

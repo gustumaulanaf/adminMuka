@@ -17,56 +17,60 @@ import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface API {
-@GET("index.php/auth/apiLogin")
-Call<List<Admin>> getAdmin(
+    @GET("index.php/auth/apiLogin")
+    Call<List<Admin>> getAdmin(
             @Query("username") String username,
             @Query("password") String password
-);
-@GET("index.php/auth/apiLoginPetugas")
-    Call<List<Petugas>> getPetugas(
-        @Query("username") String username,
-        @Query("password") String password
-);
+    );
 
-@GET("index.php/auth/apiLoginPetugas")
+    @GET("index.php/auth/apiLoginPetugas")
+    Call<List<Petugas>> getPetugas(
+            @Query("username") String username,
+            @Query("password") String password
+    );
+
+    @GET("index.php/auth/apiLoginPetugas")
     Call<List<Petugas>> getAllPetugas();
 
-@POST("index.php/petugas")
-@FormUrlEncoded
+    @POST("index.php/petugas")
+    @FormUrlEncoded
     Call<List<Petugas>> addPetugas(
-        @Field("username") String username,
-        @Field("nama") String nama,
-        @Field("telepon") String no_hp,
-        @Field("password") String password
-);
-@PUT("index.php/petugas")
-@FormUrlEncoded
-    Call<List<Petugas>> editPetugas(
-        @Field("username") String username,
-        @Field("nama") String nama,
-        @Field("telepon") String no_hp,
-        @Field("password") String password
-);
+            @Field("username") String username,
+            @Field("nama") String nama,
+            @Field("telepon") String no_hp,
+            @Field("password") String password
+    );
 
-@DELETE("index.php/petugas")
-@FormUrlEncoded
+    @PUT("index.php/petugas")
+    @FormUrlEncoded
+    Call<List<Petugas>> editPetugas(
+            @Field("username") String username,
+            @Field("nama") String nama,
+            @Field("telepon") String no_hp,
+            @Field("password") String password
+    );
+
+    @DELETE("index.php/petugas")
+    @FormUrlEncoded
     Call<List<Petugas>> deletePetugas(
-        @Field("username") String username
+            @Field("username") String username
 //        @Field("nama") String nama,
 //        @Field("telepon") String no_hp,
 //        @Field("password") String password
-);
-//Berkas
-@GET("index.php/ukur")
-Call<List<Berkas>> searchBerkas(
-        @Query("no_berkas") String no_berkas
-);
-@GET("index.php/ukur")
-Call<List<Berkas>> getAllBerkas();
+    );
+
+    //Berkas
+    @GET("index.php/ukur")
+    Call<List<Berkas>> searchBerkas(
+            @Query("no_berkas") String no_berkas
+    );
+
+    @GET("index.php/ukur")
+    Call<List<Berkas>> getAllBerkas();
 
     @POST("index.php/ukur")
     @FormUrlEncoded
-    Call<List<Berkas>> addBerkas(
+    Call<Berkas> addBerkas(
             @Field("no_berkas") String no_berkas,
             @Field("pemohon") String pemohon,
             @Field("no_hak") String no_hak,
