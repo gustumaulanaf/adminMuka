@@ -32,6 +32,7 @@ import com.gustu.adminmuka.R;
 import com.gustu.adminmuka.adapter.BerkasAdapter;
 import com.gustu.adminmuka.interfaces.BerkasView;
 import com.gustu.adminmuka.model.Berkas;
+import com.gustu.adminmuka.network.BaseUrl;
 import com.gustu.adminmuka.presenter.BerkasPresenter;
 import com.gustu.adminmuka.sharePreferences.SharedPrefUtil;
 
@@ -56,7 +57,7 @@ public class BerkasFragment extends Fragment implements BerkasView {
     AppCompatDialog appCompatDialog;
     EditText namaPemohon,noBerkas,noHak,desa,hari,tanggal,no_hp,kecamatan,petugas;
     String sNamaPemohon,sNoberkas,snoHak,sDesa,sHari,sTanggal,sNoHp,sKecamatan,sPetugas;
-
+    BaseUrl baseUrl;
     View view;
      FragmentManager fm;
     public static final int REQUEST_CODE = 11;
@@ -76,13 +77,13 @@ public class BerkasFragment extends Fragment implements BerkasView {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_berkas, container, false);
        fm = ((AppCompatActivity)getActivity()).getSupportFragmentManager();
+        ButterKnife.bind(this, view);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setTitle("Tunggu");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         berkasPresenter = new BerkasPresenter(this);
         progressDialog.show();
         berkasPresenter.getAllBerkas();
-        ButterKnife.bind(this, view);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -102,14 +103,14 @@ public class BerkasFragment extends Fragment implements BerkasView {
         fabTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAddDialog();
+                showAddDialog(getActivity());
             }
         });
         return view;
     }
 
-    private void showAddDialog() {
-        appCompatDialog = new AppCompatDialog(getActivity());
+    public void showAddDialog(Activity activity) {
+        appCompatDialog = new AppCompatDialog(activity);
         appCompatDialog.setContentView(R.layout.dialog_add_berkas);
         appCompatDialog.show();
 
@@ -156,18 +157,79 @@ public class BerkasFragment extends Fragment implements BerkasView {
             progressDialog.show();
         });
     }
+public void showEditDialog(Activity activity, String editNamaPemohon,String editNoberkas,String editnoHak,String editDesa,String editKecamatan,String editHari,String editTanggal,String editPetugas,String editNoHp ) {
+        appCompatDialog = new AppCompatDialog(activity);
+        appCompatDialog.setContentView(R.layout.dialog_add_berkas);
+        appCompatDialog.show();
+       Button btTambah;
+        ImageButton btTglUkur;
+        namaPemohon = appCompatDialog.findViewById(R.id.etNamaPemohon);
+        noBerkas = appCompatDialog.findViewById(R.id.etNoBerkas);
+        noHak = appCompatDialog.findViewById(R.id.etNoHak);
+        desa = appCompatDialog.findViewById(R.id.etDesaKelurahan);
+        hari = appCompatDialog.findViewById(R.id.etHari);
+        tanggal = appCompatDialog.findViewById(R.id.etTglUkur);
+
+        no_hp = appCompatDialog.findViewById(R.id.etNoHP);
+        kecamatan = appCompatDialog.findViewById(R.id.etKecamatan);
+        petugas = appCompatDialog.findViewById(R.id.etNamaPetugas);
+       // petugas.setText(SharedPrefUtil.getString("nama"));
+        namaPemohon.setText(editNamaPemohon);
+        noBerkas.setText(editNoberkas);
+        noHak.setText(editnoHak);
+        desa.setText(editDesa);
+        no_hp.setText(editNoHp);
+        tanggal.setText(editTanggal);
+        kecamatan.setText(editKecamatan);
+        hari.setText(editHari);
+        petugas.setText(editPetugas);
+        btTglUkur = appCompatDialog.findViewById(R.id.btTglUkur);
+        btTambah= appCompatDialog.findViewById(R.id.btTambah);
+        btTambah.setText("Update");
+        btTglUkur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatDialogFragment newFragment = new DatePickerFragment();
+                // set the targetFragment to receive the results, specifying the request code
+                newFragment.setTargetFragment(BerkasFragment.this, REQUEST_CODE);
+                // show the datePicker
+                newFragment.show(fm, "datePicker");
+            }
+        });
+        btTambah.setOnClickListener(view -> {
+            berkasPresenter = new BerkasPresenter(this);
+            String editNamaPemohon2 = namaPemohon.getText().toString();
+            String editNoberkas2 = noBerkas.getText().toString();
+            String editnoHak2 = noHak.getText().toString();
+            String editDesa2 = desa.getText().toString();
+            String editHari2 = hari.getText().toString();
+            String editTanggal2 = tanggal.getText().toString();
+            String editKecamatan2 = kecamatan.getText().toString();
+            String editPetugas2 = petugas.getText().toString();
+            String editNoHp2 = no_hp.getText().toString();
+            Log.d("HASILEDIT", "showEditDialog: "+editNamaPemohon2);
+            baseUrl = new BaseUrl();
+            berkasAdapter.setBaseUrl(baseUrl);
+            berkasPresenter = new BerkasPresenter(this);
+          berkasPresenter.editBerkas(editNoberkas2, editNamaPemohon2, editnoHak2, editDesa2, editKecamatan2, editHari2, editTanggal2, editPetugas2, editNoHp2);
+            progressDialog.setMessage("Mengupdate...");
+            progressDialog.show();
+        });
+    }
 
     @Override
     public View _onBerkasLoad(List<Berkas> berkasList) {
         progressDialog.dismiss();
         berkasAdapter = new BerkasAdapter(berkasList);
+        berkasAdapter.setContext(getActivity());
+        berkasAdapter.setBerkasFragment(this);
         recyclerView.setAdapter(berkasAdapter);
         return view;
     }
 
     @Override
     public View _onBerkasEmpty() {
-        Toast.makeText(getActivity(),"Tidak dapat Menemukan Berkas",Toast.LENGTH_SHORT).show();
+        progressDialog.dismiss();
         return view;
     }
 
@@ -184,10 +246,36 @@ public class BerkasFragment extends Fragment implements BerkasView {
     @Override
     public View _onBerkasFailedAdd() {
         progressDialog.dismiss();
-        Toast.makeText(getActivity(),"Gagal Menambahkan",Toast.LENGTH_SHORT).show();
+     //   Log.d("GAGAL", "_onBerkasFailedAdd: "+"GAGAL");
+//        Toast.makeText(getActivity(),"Gagal Menambahkan",Toast.LENGTH_SHORT).show();
                 return view;
     }
-//DatePicker
+
+    @Override
+    public View _onEditBerkas() {
+        Toast.makeText(getActivity(),"Berhasil Di Ubah",Toast.LENGTH_SHORT).show();
+        berkasAdapter.notifyDataSetChanged();
+        return view;
+    }
+
+    @Override
+    public View _onBerkasGagalEdit() {
+        return view;
+    }
+
+    @Override
+    public View _onBerkasTerhapus(
+    ) {
+        Toast.makeText(getActivity(),"Berkas Terhapus",Toast.LENGTH_SHORT).show();
+        return view;
+    }
+
+    @Override
+    public View _onBerkasGagalHapus() {
+        return view;
+    }
+
+    //DatePicker
 @Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     // check for the results
@@ -220,6 +308,12 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void hapusBerkas(String noBerkas) {
+        berkasPresenter.hapusBerkas(noBerkas);
+        berkasPresenter.getAllBerkas();
+        berkasAdapter.notifyDataSetChanged();
     }
 
     public interface OnFragmentInteractionListener {

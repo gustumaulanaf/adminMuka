@@ -81,4 +81,22 @@ public interface API {
             @Field("petugas") String petugas,
             @Field("no_hp") String no_hp
     );
+    @GET("index.php/data/edit")
+    Call<List<Berkas>> editBerkas(
+            @Query("no_berkas") String no_berkas,
+            @Query("pemohon") String pemohon,
+            @Query("no_hak") String no_hak,
+            @Query("desa") String desa,
+            @Query("kecamatan") String kecamatan,
+            @Query("hari") String hari,
+            @Query("tanggal") String tanggal,
+            @Query("petugas") String petugas,
+            @Query("no_hp") String no_hp
+    );
+    @GET("index.php/data/edit")
+    Call<List<Berkas>> deleteBerkas(
+            @Query("xx") String no_berkas
+    );
 };
+
+

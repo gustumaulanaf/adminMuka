@@ -86,4 +86,36 @@ public class BerkasPresenter {
         });
     //    Log.d("BerkasADD", "onResponse: "+"Success");
     }
+    public  void editBerkas(String sNoberkas, String sNamaPemohon, String snoHak, String sDesa, String sKecamatan, String sHari, String sTanggal, String sPetugas, String sNoHp){
+        Log.d("NOBERKAS", "editBerkas: "+sNoberkas+sNamaPemohon+snoHak+sDesa+sKecamatan+sHari+sTanggal+sPetugas+sNoHp);
+        baseUrl.getApi().editBerkas(sNoberkas,sNamaPemohon,snoHak,sDesa,sKecamatan,sHari,sTanggal,sPetugas,sNoHp).enqueue(new Callback<List<Berkas>>() {
+            @Override
+            public void onResponse(Call<List<Berkas>> call, Response<List<Berkas>> response) {
+                if (response.isSuccessful()){
+                    berkasView._onEditBerkas();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Berkas>> call, Throwable t) {
+                berkasView._onBerkasGagalEdit();
+                Log.d("onFailed", "onFailure: "+t);
+            }
+        });
+    }
+    public void hapusBerkas(String no_berkas){
+        baseUrl.getApi().deleteBerkas(no_berkas).enqueue(new Callback<List<Berkas>>() {
+            @Override
+            public void onResponse(Call<List<Berkas>> call, Response<List<Berkas>> response) {
+                if (response.isSuccessful()){
+                    berkasView._onBerkasTerhapus();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Berkas>> call, Throwable t) {
+                    berkasView._onBerkasGagalHapus();
+            }
+        });
+    }
 }
