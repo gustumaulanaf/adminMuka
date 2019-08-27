@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         progressDialog.setTitle("Tunggu");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Login..");
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
     }
     @OnClick(R.id.btLogin)
     public void login(){
