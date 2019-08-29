@@ -93,9 +93,9 @@ public interface API {
             @Query("petugas") String petugas,
             @Query("no_hp") String no_hp
     );
-    @GET("index.php/data/edit")
+    @GET("index.php/data/delete")
     Call<List<Berkas>> deleteBerkas(
-            @Query("xx") String no_berkas
+            @Query("no_berkas") String no_berkas
     );
 };
 

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gustu.adminmuka.R;
 import com.gustu.adminmuka.fragment.BerkasFragment;
+import com.gustu.adminmuka.fragment.HomeFragment;
 import com.gustu.adminmuka.fragment.ProfileFragment;
 
 import butterknife.BindView;
@@ -25,6 +26,7 @@ public class PetugasActivity extends AppCompatActivity implements BerkasFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_petugas);
         ButterKnife.bind(this);
+        gotoFragment(new HomeFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -36,7 +38,9 @@ public class PetugasActivity extends AppCompatActivity implements BerkasFragment
                     case R.id.menuBerkasPetugas:
                         fragment = new BerkasFragment();
                         break;
-
+                    case R.id.menuUtamaPetugas:
+                        fragment = new HomeFragment();
+                        break;
 
                 }
                 return gotoFragment(fragment);

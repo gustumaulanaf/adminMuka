@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.WindowManager;
 
 import com.gustu.adminmuka.R;
+import com.gustu.adminmuka.model.Petugas;
+import com.gustu.adminmuka.sharePreferences.SharedPrefUtil;
 
 public class SplashActivity extends AppCompatActivity {
     int waktuloading = 3000;
@@ -19,8 +21,14 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
-                finish();
+                if (SharedPrefUtil.getBoolean("login")){
+                    startActivity(new Intent(SplashActivity.this, PetugasActivity.class));
+                    finish();
+                }
+                else {
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    finish();
+                }
             }
         },waktuloading);
     }

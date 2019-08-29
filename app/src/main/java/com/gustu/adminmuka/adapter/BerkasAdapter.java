@@ -1,7 +1,9 @@
 package com.gustu.adminmuka.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,7 +79,24 @@ public class BerkasAdapter extends RecyclerView.Adapter<BerkasAdapter.ViewHolder
         holder.hapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                berkasFragment.hapusBerkas(berkasList.get(position).getNoBerkas());
+                AlertDialog.Builder alertdialog = new AlertDialog.Builder(activity);
+                alertdialog.setTitle("Peringatan");
+                alertdialog.setMessage("Apakah Anda Yakin Ingin Menghapus Berkas No :" + berkasList.get(position).getNoBerkas());
+                alertdialog.setPositiveButton("YA",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                berkasFragment.hapusBerkas(berkasList.get(position).getNoBerkas());
+                            }
+                        });
+              alertdialog.setNegativeButton("BATAL",
+                      new DialogInterface.OnClickListener() {
+                          @Override
+                          public void onClick(DialogInterface dialogInterface, int i) {
+                              dialogInterface.dismiss();
+                          }
+                      });
+              alertdialog.show();
             }
         });
     }
