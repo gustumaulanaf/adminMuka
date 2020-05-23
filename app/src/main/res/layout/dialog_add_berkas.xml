@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -14,14 +15,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvJudul"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:textColor="@color/putih"
-                android:text="Tambah Data"
-                android:id="@+id/tvJudul"
                 android:background="@color/colorPrimary"
+                android:gravity="center_horizontal"
+                android:text="Tambah Data"
+                android:textColor="@color/putih"
                 android:textSize="30sp" />
 
             <androidx.cardview.widget.CardView
@@ -34,71 +35,72 @@
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
+
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="No. Berkas">
 
                         <EditText
                             android:id="@+id/etNoBerkas"
-                            android:textAllCaps="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:textAllCaps="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nomor Surat"/>
+                        android:hint="Nomor Surat" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nama Pemohon">
 
                         <EditText
-                            android:textAllCaps="true"
                             android:id="@+id/etNamaPemohon"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:textAllCaps="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="No Hak (No. HM/C)">
 
                         <EditText
-                            android:textAllCaps="true"
                             android:id="@+id/etNoHak"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:textAllCaps="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="Kuasa/notaris PPAT/yang mengurusi"/>
+                        android:hint="Kuasa/notaris PPAT/yang mengurusi" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="RT/RW"/>
+                        android:hint="RT/RW" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="No. HM/C"/>
+                        android:hint="No. HM/C" />
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAllCaps="true"
-                        android:hint="Desa/Kelurahan">
+                        android:hint="Desa/Kelurahan"
+                        android:textAllCaps="true">
 
                         <EditText
                             android:id="@+id/etDesaKelurahan"
@@ -108,119 +110,118 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Kecamatan">
 
                         <EditText
                             android:id="@+id/etKecamatan"
-                            android:textAllCaps="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:textAllCaps="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.cardview.widget.CardView
-                        android:padding="10dp"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:padding="10dp"
                         app:cardBackgroundColor="@color/colorPrimary"
-                        app:cardCornerRadius="10dp"
-                        android:layout_height="wrap_content">
+                        app:cardCornerRadius="10dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:text="AKAN DIUKUR"
                             android:textColor="@color/putih"
-                            android:textStyle="bold"
-                            android:text="AKAN DIUKUR"/>
+                            android:textStyle="bold" />
 
                     </androidx.cardview.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="250dp"
-                            android:layout_height="wrap_content"
-                            android:hint="Tanggal Ukur">
-
                             <EditText
+                                android:focusable="false"
+                                android:hint="Tanggal Ukur"
                                 android:id="@+id/etTglUkur"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:enabled="false"
                                 android:textColor="@color/birutua" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <ImageButton
-                            android:id="@+id/btTglUkur"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@color/colorPrimary"
-                            android:src="@drawable/ic_date_range_black_24dp" />
-                    </LinearLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Hari">
 
                         <EditText
-                            android:textAllCaps="true"
                             android:id="@+id/etHari"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
                             android:inputType="text"
+                            android:textAllCaps="true"
                             android:textColor="@color/birutua" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Permasalahan">
+
+                        <EditText
+                            android:id="@+id/etPermasalahan"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:inputType="text"
+                            android:textAllCaps="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
                     <LinearLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="250dp"
-                            android:layout_height="wrap_content"
-                            android:hint="Tanggal 302"/>
-
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:text="Nama Petugas :"
-                        android:layout_margin="10dp"
-                        android:textStyle="bold"
-                        android:gravity="center_horizontal"
-                        android:textColor="@color/hitam"/>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
-                        android:hint="Nama"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:textAllCaps="true"
-                            android:enabled="false"
-                            android:textColor="@color/hitam"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/etNamaPetugas"/>
+                            android:hint="Tanggal 302" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center_horizontal"
+                        android:text="Nama Petugas :"
+                        android:textColor="@color/hitam"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama">
+
+                        <EditText
+                            android:id="@+id/etNamaPetugas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:textAllCaps="true"
+                            android:textColor="@color/hitam" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="300dp"
-                        android:hint="No. HP"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="No. HP">
+
                         <EditText
-                            android:inputType="number"
+                            android:id="@+id/etNoHP"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/etNoHP"/>
+                            android:inputType="number" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>

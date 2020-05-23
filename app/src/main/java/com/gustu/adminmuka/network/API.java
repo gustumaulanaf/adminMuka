@@ -79,19 +79,22 @@ public interface API {
             @Field("hari") String hari,
             @Field("tanggal") String tanggal,
             @Field("petugas") String petugas,
-            @Field("no_hp") String no_hp
+            @Field("no_hp") String no_hp,
+            @Field("permasalahan") String permasalahan
     );
-    @GET("index.php/data/edit")
+    @POST("index.php/data/edit")
+    @FormUrlEncoded
     Call<List<Berkas>> editBerkas(
-            @Query("no_berkas") String no_berkas,
-            @Query("pemohon") String pemohon,
-            @Query("no_hak") String no_hak,
-            @Query("desa") String desa,
-            @Query("kecamatan") String kecamatan,
-            @Query("hari") String hari,
-            @Query("tanggal") String tanggal,
-            @Query("petugas") String petugas,
-            @Query("no_hp") String no_hp
+            @Field("no_berkas") String no_berkas,
+            @Field("pemohon") String pemohon,
+            @Field("no_hak") String no_hak,
+            @Field("desa") String desa,
+            @Field("kecamatan") String kecamatan,
+            @Field("hari") String hari,
+            @Field("tanggal") String tanggal,
+            @Field("petugas") String petugas,
+            @Field("no_hp") String no_hp,
+            @Field("permasalahan") String permasalahan
     );
     @GET("index.php/data/delete")
     Call<List<Berkas>> deleteBerkas(

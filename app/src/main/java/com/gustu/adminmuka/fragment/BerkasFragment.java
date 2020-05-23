@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,16 +56,16 @@ public class BerkasFragment extends Fragment implements BerkasView {
     @BindView(R.id.fabTambah)
     FloatingActionButton fabTambah;
     LinearLayoutManager linearLayoutManager;
+    LinearLayout layoutTglUkur;
     AppCompatDialog appCompatDialog;
     TextView judul;
-    EditText namaPemohon,noBerkas,noHak,desa,hari,tanggal,no_hp,kecamatan,petugas;
-    String sNamaPemohon,sNoberkas,snoHak,sDesa,sHari,sTanggal,sNoHp,sKecamatan,sPetugas;
+    EditText namaPemohon, noBerkas, noHak, desa, hari, tanggal, no_hp, kecamatan, petugas, permasalahan;
+    String sNamaPemohon, sNoberkas, snoHak, sDesa, sHari, sTanggal, sNoHp, sKecamatan, sPetugas,sPermasalahan;
     BaseUrl baseUrl;
     View view;
-     FragmentManager fm;
+    FragmentManager fm;
     public static final int REQUEST_CODE = 11;
-    String selectedDate=""
-            ,selectedhari="";
+    String selectedDate = "", selectedhari = "";
     ProgressDialog progressDialog;
     private OnFragmentInteractionListener mListener;
 
@@ -78,7 +79,7 @@ public class BerkasFragment extends Fragment implements BerkasView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_berkas, container, false);
-       fm = ((AppCompatActivity)getActivity()).getSupportFragmentManager();
+        fm = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
         ButterKnife.bind(this, view);
         berkasPresenter = new BerkasPresenter(this);
         berkasPresenter.getAllBerkas();
@@ -116,8 +117,9 @@ public class BerkasFragment extends Fragment implements BerkasView {
         appCompatDialog.setContentView(R.layout.dialog_add_berkas);
         appCompatDialog.show();
 
-       Button btTambah;
+        Button btTambah;
         ImageButton btTglUkur;
+        permasalahan = appCompatDialog.findViewById(R.id.etPermasalahan);
         namaPemohon = appCompatDialog.findViewById(R.id.etNamaPemohon);
         noBerkas = appCompatDialog.findViewById(R.id.etNoBerkas);
         noHak = appCompatDialog.findViewById(R.id.etNoHak);
@@ -132,10 +134,10 @@ public class BerkasFragment extends Fragment implements BerkasView {
         kecamatan = appCompatDialog.findViewById(R.id.etKecamatan);
         petugas = appCompatDialog.findViewById(R.id.etNamaPetugas);
         petugas.setText(SharedPrefUtil.getString("nama"));
-        btTglUkur = appCompatDialog.findViewById(R.id.btTglUkur);
-        btTambah= appCompatDialog.findViewById(R.id.btTambah);
 
-        btTglUkur.setOnClickListener(new View.OnClickListener() {
+        btTambah = appCompatDialog.findViewById(R.id.btTambah);
+
+        tanggal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatDialogFragment newFragment = new DatePickerFragment();
@@ -153,19 +155,25 @@ public class BerkasFragment extends Fragment implements BerkasView {
             sHari = hari.getText().toString();
             sTanggal = tanggal.getText().toString();
             sKecamatan = kecamatan.getText().toString();
-            sPetugas= petugas.getText().toString();
+            sPetugas = petugas.getText().toString();
             sNoHp = no_hp.getText().toString();
-           berkasPresenter.addBerkas(sNoberkas, sNamaPemohon, snoHak, sDesa, sKecamatan, sHari, sTanggal, sPetugas, sNoHp);
+            sPermasalahan = this.permasalahan.getText().toString();
+            if (sPermasalahan.isEmpty()){
+                sPermasalahan="Kosong";
+            }
+            berkasPresenter.addBerkas(sNoberkas, sNamaPemohon, snoHak, sDesa, sKecamatan, sHari, sTanggal, sPetugas, sNoHp,sPermasalahan);
             progressDialog.setMessage("Menambahkan...");
             progressDialog.show();
         });
     }
-public void showEditDialog(Activity activity, String editNamaPemohon,String editNoberkas,String editnoHak,String editDesa,String editKecamatan,String editHari,String editTanggal,String editPetugas,String editNoHp ) {
+
+    public void showEditDialog(Activity activity, String editNamaPemohon, String editNoberkas, String editnoHak, String editDesa, String editKecamatan, String editHari, String editTanggal, String editPetugas, String editNoHp, String permasalahan) {
         appCompatDialog = new AppCompatDialog(activity);
         appCompatDialog.setContentView(R.layout.dialog_add_berkas);
         appCompatDialog.show();
-       Button btTambah;
+        Button btTambah;
         ImageButton btTglUkur;
+        this.permasalahan = appCompatDialog.findViewById(R.id.etPermasalahan);
         namaPemohon = appCompatDialog.findViewById(R.id.etNamaPemohon);
         noBerkas = appCompatDialog.findViewById(R.id.etNoBerkas);
         noHak = appCompatDialog.findViewById(R.id.etNoHak);
@@ -176,7 +184,7 @@ public void showEditDialog(Activity activity, String editNamaPemohon,String edit
         no_hp = appCompatDialog.findViewById(R.id.etNoHP);
         kecamatan = appCompatDialog.findViewById(R.id.etKecamatan);
         petugas = appCompatDialog.findViewById(R.id.etNamaPetugas);
-       // petugas.setText(SharedPrefUtil.getString("nama"));
+        // petugas.setText(SharedPrefUtil.getString("nama"));
         judul.setText("Edit Data");
         namaPemohon.setText(editNamaPemohon);
         noBerkas.setText(editNoberkas);
@@ -186,12 +194,12 @@ public void showEditDialog(Activity activity, String editNamaPemohon,String edit
         tanggal.setText(editTanggal);
         kecamatan.setText(editKecamatan);
         hari.setText(editHari);
+        this.permasalahan.setText(permasalahan);
         petugas.setText(editPetugas);
-        btTglUkur = appCompatDialog.findViewById(R.id.btTglUkur);
-        btTambah= appCompatDialog.findViewById(R.id.btTambah);
+        btTambah = appCompatDialog.findViewById(R.id.btTambah);
 
         btTambah.setText("Update");
-        btTglUkur.setOnClickListener(new View.OnClickListener() {
+        tanggal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatDialogFragment newFragment = new DatePickerFragment();
@@ -212,11 +220,14 @@ public void showEditDialog(Activity activity, String editNamaPemohon,String edit
             String editKecamatan2 = kecamatan.getText().toString();
             String editPetugas2 = petugas.getText().toString();
             String editNoHp2 = no_hp.getText().toString();
-            Log.d("HASILEDIT", "showEditDialog: "+editNamaPemohon2);
+            String sPermasalahan = this.permasalahan.getText().toString();
+            if (sPermasalahan.isEmpty()){
+                sPermasalahan="Kosong";
+            }
             baseUrl = new BaseUrl();
             berkasAdapter.setBaseUrl(baseUrl);
             berkasPresenter = new BerkasPresenter(this);
-          berkasPresenter.editBerkas(editNoberkas2, editNamaPemohon2, editnoHak2, editDesa2, editKecamatan2, editHari2, editTanggal2, editPetugas2, editNoHp2);
+            berkasPresenter.editBerkas(editNoberkas2, editNamaPemohon2, editnoHak2, editDesa2, editKecamatan2, editHari2, editTanggal2, editPetugas2, editNoHp2,sPermasalahan);
             progressDialog.setMessage("Mengupdate...");
             progressDialog.show();
         });
@@ -245,21 +256,21 @@ public void showEditDialog(Activity activity, String editNamaPemohon,String edit
         berkasPresenter.getAllBerkas();
         berkasPresenter.getAllBerkas();
         berkasAdapter.notifyDataSetChanged();
-        Toast.makeText(getActivity(),"Berhasil Ditambahkan",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
         return view;
     }
 
     @Override
     public View _onBerkasFailedAdd() {
         progressDialog.dismiss();
-     //   Log.d("GAGAL", "_onBerkasFailedAdd: "+"GAGAL");
+        //   Log.d("GAGAL", "_onBerkasFailedAdd: "+"GAGAL");
 //        Toast.makeText(getActivity(),"Gagal Menambahkan",Toast.LENGTH_SHORT).show();
-                return view;
+        return view;
     }
 
     @Override
     public View _onEditBerkas() {
-        Toast.makeText(getActivity(),"Berhasil Di Ubah",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Berhasil Di Ubah", Toast.LENGTH_SHORT).show();
         berkasPresenter.getAllBerkas();
         berkasAdapter.notifyDataSetChanged();
         return view;
@@ -275,12 +286,12 @@ public void showEditDialog(Activity activity, String editNamaPemohon,String edit
     }
 
     @Override
-    public View _onBerkasTerhapus(    ) {
+    public View _onBerkasTerhapus() {
         Log.d("BERKAS", "_onBerkasTerhapus: ");
         progressDialog.dismiss();
         berkasPresenter.getAllBerkas();
         berkasAdapter.notifyDataSetChanged();
-        Toast.makeText(getActivity(),"Berkas Terhapus",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Berkas Terhapus", Toast.LENGTH_SHORT).show();
         return view;
     }
 
@@ -293,22 +304,22 @@ public void showEditDialog(Activity activity, String editNamaPemohon,String edit
     }
 
     //DatePicker
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    // check for the results
-    if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-        // get date from string
-        selectedDate = data.getStringExtra("selectedDate");
-        selectedhari = data.getStringExtra("hari");
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // check for the results
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // get date from string
+            selectedDate = data.getStringExtra("selectedDate");
+            selectedhari = data.getStringExtra("hari");
 
-        Log.d("SELECTED DATE", "onActivityResult: "+selectedDate);
-        Log.d("SELECTED HARI", "onActivityResult: "+selectedhari);
-        hari.setText(selectedhari);
-        tanggal.setText(selectedDate);
-        // set the value of the editText
-  //      dateOfBirthET.setText(selectedDate);
+            Log.d("SELECTED DATE", "onActivityResult: " + selectedDate);
+            Log.d("SELECTED HARI", "onActivityResult: " + selectedhari);
+            hari.setText(selectedhari);
+            tanggal.setText(selectedDate);
+            // set the value of the editText
+            //      dateOfBirthET.setText(selectedDate);
+        }
     }
-}
 
     @Override
     public void onAttach(Context context) {

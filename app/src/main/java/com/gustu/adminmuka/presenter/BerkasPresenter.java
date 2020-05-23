@@ -67,9 +67,12 @@ public class BerkasPresenter {
         });
     }
 
-    public void addBerkas(String sNoberkas, String sNamaPemohon, String snoHak, String sDesa, String sKecamatan, String sHari, String sTanggal, String sPetugas, String sNoHp) {
+    public void addBerkas(String sNoberkas, String sNamaPemohon, String snoHak, String sDesa, String sKecamatan, String sHari, String sTanggal, String sPetugas, String sNoHp,String permasalahan) {
         //Log.d("HASIL", "onResponse: "+"sukses");
-        baseUrl.getApi().addBerkas(sNoberkas,sNamaPemohon,snoHak,sDesa,sKecamatan,sHari,sTanggal,sPetugas,sNoHp).enqueue(new Callback<Berkas>() {
+        if (permasalahan.isEmpty()){
+            permasalahan = "Kosong";
+        }
+        baseUrl.getApi().addBerkas(sNoberkas,sNamaPemohon,snoHak,sDesa,sKecamatan,sHari,sTanggal,sPetugas,sNoHp,permasalahan).enqueue(new Callback<Berkas>() {
             @Override
             public void onResponse(Call<Berkas> call, Response<Berkas> response) {
                 if (response.isSuccessful()){
@@ -86,9 +89,12 @@ public class BerkasPresenter {
         });
     //    Log.d("BerkasADD", "onResponse: "+"Success");
     }
-    public  void editBerkas(String sNoberkas, String sNamaPemohon, String snoHak, String sDesa, String sKecamatan, String sHari, String sTanggal, String sPetugas, String sNoHp){
+    public  void editBerkas(String sNoberkas, String sNamaPemohon, String snoHak, String sDesa, String sKecamatan, String sHari, String sTanggal, String sPetugas, String sNoHp,String permasalahan){
      //   Log.d("NOBERKAS", "editBerkas: "+sNoberkas+sNamaPemohon+snoHak+sDesa+sKecamatan+sHari+sTanggal+sPetugas+sNoHp);
-        baseUrl.getApi().editBerkas(sNoberkas,sNamaPemohon,snoHak,sDesa,sKecamatan,sHari,sTanggal,sPetugas,sNoHp).enqueue(new Callback<List<Berkas>>() {
+        if (permasalahan.equals("")){
+            permasalahan = "Kosong";
+        }
+        baseUrl.getApi().editBerkas(sNoberkas,sNamaPemohon,snoHak,sDesa,sKecamatan,sHari,sTanggal,sPetugas,sNoHp,permasalahan).enqueue(new Callback<List<Berkas>>() {
             @Override
             public void onResponse(Call<List<Berkas>> call, Response<List<Berkas>> response) {
                 if (response.isSuccessful()){

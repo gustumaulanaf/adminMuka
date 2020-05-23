@@ -73,7 +73,7 @@ public class BerkasAdapter extends RecyclerView.Adapter<BerkasAdapter.ViewHolder
             @Override
             public void onClick(View view) {
                // berkasFragment = new BerkasFragment();
-                berkasFragment.showEditDialog(activity,berkasList.get(position).getPemohon(),berkasList.get(position).getNoBerkas(),berkasList.get(position).getNoHak(),berkasList.get(position).getDesa(),berkasList.get(position).getKecamatan(),berkasList.get(position).getHari(),berkasList.get(position).getTanggal(),berkasList.get(position).getPetugas(),berkasList.get(position).getNoHp());
+                berkasFragment.showEditDialog(activity,berkasList.get(position).getPemohon(),berkasList.get(position).getNoBerkas(),berkasList.get(position).getNoHak(),berkasList.get(position).getDesa(),berkasList.get(position).getKecamatan(),berkasList.get(position).getHari(),berkasList.get(position).getTanggal(),berkasList.get(position).getPetugas(),berkasList.get(position).getNoHp(),berkasList.get(position).getPermasalahan());
             }
         });
         holder.hapus.setOnClickListener(new View.OnClickListener() {
